@@ -38,9 +38,12 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-    User.findById('5e4553e7b24d22296ca17820')
+    if (!req.session.user) {
+        return next();
+    }
+    User.findById(req.session.user._id)
         .then(user => {
-            req.user = user
+            req.user = user;
             next();
         })
         .catch(err => {
@@ -56,19 +59,6 @@ app.use(errorController.get404);
 
 mongoose.connect(MONGODB_URI)
     .then(result => {
-        User.findOne()
-            .then(user => {
-                if (!user) {
-                    const user = new User({
-                        name: 'Alfirsa',
-                        email: 'alfirss@gmail.com',
-                        cart: {
-                            items: []
-                        }
-                    });
-                    user.save();
-                }
-            });
         app.listen(3000);
     })
     .catch(err => {
