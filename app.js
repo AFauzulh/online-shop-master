@@ -12,7 +12,7 @@ const errorController = require('./controllers/error');
 
 const User = require('./models/user');
 
-let MONGODB_URI = 'mongodb+srv://firss:GmzEQpUk29FxCysi@cluster0-frrnr.mongodb.net/shop';
+let MONGODB_URI = 'mongodb+srv://firss:qwert123@cluster0-frrnr.mongodb.net/shop';
 
 const app = express();
 
@@ -73,7 +73,7 @@ app.use(errorController.get404);
 
 mongoose.connect(MONGODB_URI)
     .then(result => {
-        app.listen(3000);
+        app.listen(8998);
     })
     .catch(err => {
         console.log(err);

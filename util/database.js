@@ -5,7 +5,7 @@ let _db;
 
 const mongoConnect = (callback) => {
     // let url = 'mongodb://localhost:27017/node-complete';
-    let url = 'mongodb+srv://firss:GmzEQpUk29FxCysi@cluster0-frrnr.mongodb.net/shop?retryWrites=true&w=majority';
+    let url = 'mongodb+srv://firss:qwert123@cluster0-frrnr.mongodb.net/shop?retryWrites=true&w=majority';
     MongoClient.connect(url)
         .then(client => {
             console.log('Database Connected!');
