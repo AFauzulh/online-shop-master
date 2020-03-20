@@ -12,12 +12,13 @@ const errorController = require('./controllers/error');
 
 const User = require('./models/user');
 
-let MONGODB_URI = 'mongodb+srv://firss:qwert123@cluster0-frrnr.mongodb.net/shop';
+// let MONGODB_URI = 'mongodb+srv://firss:qwert123@cluster0-frrnr.mongodb.net/shop?retryWrites=true&w=majority';
+let MONGODB_URI_LOCAL = 'mongodb://localhost:27017/shop';
 
 const app = express();
 
 const store = new MongoDBStore({
-    uri: MONGODB_URI,
+    uri: MONGODB_URI_LOCAL,
     collection: 'sessions'
 });
 
@@ -71,7 +72,7 @@ app.use(authRoutes);
 
 app.use(errorController.get404);
 
-mongoose.connect(MONGODB_URI)
+mongoose.connect(MONGODB_URI_LOCAL)
     .then(result => {
         app.listen(8998);
     })
